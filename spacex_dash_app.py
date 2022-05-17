@@ -64,6 +64,7 @@ def get_pie_chart(entered_site):
         fig = px.pie(filtered_df, values='class', 
         names='Launch Site', 
         title='Total Successful Launches For all Sites')
+        fig.update_layout()
         return fig
     else:
         # return the outcomes piechart for a selected site
@@ -72,6 +73,7 @@ def get_pie_chart(entered_site):
         fig = px.pie(filtered_df, values='count',
         names='class',
         title='Total Successful Launches for' + entered_site)
+        fig.update_layout()
         return fig
 
 # TASK 4:
@@ -84,11 +86,13 @@ def get_scatter_chart(entered_site, entered_payload):
         filtered_df=spacex_df[(spacex_df['Payload Mass (kg)']>=entered_payload[0])&(spacex_df['Payload Mass (kg)']<=entered_payload[1])]
         fig2=px.scatter(filtered_df,x='Payload Mass (kg)', y='class',color='Booster Version Category',
         title='Correlation between Payload Mass and Success for All Sites')
+        fig2.update_layout()
         return fig2
     else:
         filtered_df=spacex_df[(spacex_df['Launch Site']==entered_site)&spacex_df[(spacex_df['Payload Mass (kg)']>=entered_payload[0])&(spacex_df['Payload Mass (kg)']<=entered_payload[1])]]
         fig2=px.scatter(filtered_df,x='Payload Mass (kg)',y='class', color='Booster Version Category',
         title='Correlation between Payload Mass and Success for' + entered_site)
+        fig2.update_layout()
         return fig2
 
 # Run the app
